@@ -53,8 +53,8 @@ function animate(){
   meshes.copy2.position.x = Math.sin(clock.getElapsedTime()) * 4
   meshes.copy2.position.y = Math.sin(clock.getElapsedTime()) * 4
 
-  meshes.copy3.position.x = Math.sin(clock.getElapsedTime() * 2) * 2.5
-  meshes.copy3.position.x = Math.sin(clock.getElapsedTime() * 2) * 2.5
+  meshes.copy3.position.x = Math.sin(clock.getElapsedTime() * 2) * Math.PI * 3/2
+  meshes.copy3.position.x = Math.sin(clock.getElapsedTime() * 2) + Math.PI * 3/2
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
 }
