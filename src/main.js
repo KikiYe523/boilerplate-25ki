@@ -11,6 +11,7 @@ import {MeshLambertMa} from './addmeshLambert.js'
 import {addPhysicalMesh} from './addPhysicalMesh.js'
 import { addTexturedMesh } from './addTexturedMeshes.js'
 import Model from './model'
+import loadingManager from './manager'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
@@ -22,6 +23,7 @@ const meshes = {}
 const lights = {}
 const mixers = []
 const clock = new THREE.Clock()
+const loadingManager = loadingManager()
 
 init()
 function init(){
@@ -58,6 +60,8 @@ function instances() {
   position: new THREE.Vector3(0,-0.8,3),
   animationState: true,
   mixers: mixers,
+  replace: true,
+  manager: loadingManager,
   })
  flowers.init();
 }
@@ -68,6 +72,9 @@ function animate(){
     mixer.update(delta)
   }
 
+  if (meshes.flower) {
+    meshes.flower.rotation.y -= 0.02
+  }
   Object.values(meshes). forEach((mesh)=>{ mesh.rotation.y += 0.01})
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
